@@ -27,12 +27,3 @@ def parse_portfolio(file_path):
         positions.append(stock)
 
     return positions
-
-# returns list of symbols
-def get_symbols(file_path):
-
-    df = pd.read_csv(file_path, skiprows=2, skipfooter=2)
-
-    symbols = df["Symbol"].tolist()
-
-    return symbols

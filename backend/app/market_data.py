@@ -2,15 +2,12 @@
 # https://ranaroussi.github.io/yfinance/reference/index.html
 
 import yfinance as yf
-from csv_reader import parse_portfolio, get_symbols
+from csv_reader import parse_portfolio
 
-# get the cleaned portfolio and add more important data from yfinance to each stock object in the list
-# eventually this needs to be cached to db for historical data (i do this later)
-def fetch_current_prices(file_path):
+# add current prices from yfinance to each stock in the portfolio
+def fetch_current_prices(portfolio):
 
-    portfolio = parse_portfolio(file_path)
-
-    symbols = get_symbols(file_path)
+    symbols = [p["symbol"] for p in portfolio]
     data = yf.download(symbols, period="1d", interval="1d")
 
     prices = data["Close"].iloc[-1].to_dict()
@@ -22,6 +19,8 @@ def fetch_current_prices(file_path):
         else:
             position["current_price"] = None
 
-    print(portfolio)
+    return portfolio
 
-fetch_current_prices("example_csv/ex1.csv")
+portfolio = parse_portfolio("example_csv/ex1.csv")
+portfolio = fetch_current_prices(portfolio)
+print(portfolio)

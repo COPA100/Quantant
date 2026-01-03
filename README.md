@@ -27,5 +27,5 @@ Quantly is both a personal and technical project for me. The scale and richness 
 ### Data & Infrastructure
 - AWS S3 (portfolio file storage)
 - AWS RDS (user, portfolio, and analytics metadata)
-- AWS EC2 (application hosting)
+- AWS ECS Fargate (host FastAPI and C++ engine)
 - Docker

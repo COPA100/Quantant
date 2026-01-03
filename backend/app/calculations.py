@@ -28,3 +28,13 @@ def calculate_portfolio_gainloss(portfolio):
         "gain_loss": round(gain_loss, 2),
         "gain_loss_pct": round(gain_loss_pct, 2),
     }
+
+def calculate_position_gains(portfolio):
+
+    for p in portfolio:
+        cost = p["quantity"] * p["purchase_price"]
+        value = p["quantity"] * p["current_price"]
+        p["gain_loss"] = round(value - cost, 2)
+        p["gain_loss_pct"] = round((value - cost) / cost * 100, 2)
+    
+    return portfolio

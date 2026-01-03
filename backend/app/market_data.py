@@ -20,7 +20,3 @@ def fetch_current_prices(portfolio):
             position["current_price"] = None
 
     return portfolio
-
-portfolio = parse_portfolio("example_csv/ex1.csv")
-portfolio = fetch_current_prices(portfolio)
-print(portfolio)

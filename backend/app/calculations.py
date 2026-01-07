@@ -38,3 +38,21 @@ def calculate_position_gains(portfolio):
         p["gain_loss_pct"] = round((value - cost) / cost * 100, 2)
     
     return portfolio
+
+def calculate_position_allocation(portfolio):
+
+    total = calculate_portfolio_total(portfolio)
+
+    if total == 0:
+        return portfolio
+
+    for p in portfolio:
+        value = p["quantity"] * p["current_price"]
+
+        percentage = value / total
+        p["pct_allocation"] = percentage
+
+    return portfolio
+
+
+        
